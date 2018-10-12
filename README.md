@@ -18,4 +18,4 @@ Use the latte cup.
 
 Screenshot
 ----------------
-[![Latte](https://raw.github.com/Ezandora/Latte/blob/master/images/latte.png)](https://raw.github.com/Ezandora/Latte/blob/master/images/latte.png)
+[![Latte](https://github.com/Ezandora/Latte/blob/master/Images/latte.png)](https://github.com/Ezandora/Latte/blob/master/Images/latte.png)

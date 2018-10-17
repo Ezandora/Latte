@@ -5,7 +5,7 @@ import "relay/choice.ash";
 //I thought about adding a button for it, but then I thought... does anyone need it?
 
 //Also, you can CLI "choice.1329.ash refill" to refill your latte with an algorithm that is terrible.
-string __latte_relay_version = "1.0";
+string __latte_relay_version = "1.0.1";
 
 boolean __setting_debug = false;
 
@@ -23,6 +23,7 @@ string capitaliseFirstLetter1329(string v)
 Record LatteIngredient
 {
 	boolean is_disabled;
+	boolean already_selected;
 	string [int] input_values;
 	string [int] names;
 	string enchantment_html;
@@ -336,6 +337,8 @@ void handleLatte(string page_text)
 			string td_core = td_matches[key2][1];
 			//core_out.append("<br>" + td_core.entity_encode());
 			
+			if (td_core.contains_text(" checked"))
+				gradiant.already_selected = true;
 			if (key2 == 4)
 				gradiant.enchantment_html = td_core.replace_string("<i>", "").replace_string("<br />", ""); //game's HTML contains a needless <i> and no </i>. and the last <br /> we don't want
 			if (key2 <= 3 && key2 >= 1)
@@ -600,6 +603,7 @@ void handleLatte(string page_text)
 		button_randomisation_array[target] = v;
 	}
 	
+	int [int] button_ids_to_preselect;
 	int [string] button_id_for_ingredient;
 	int entry_count_on_line = 0;
 	int button_id_raw = 0;
@@ -660,6 +664,9 @@ void handleLatte(string page_text)
 			
 				int button_id = button_randomisation_array[button_id_raw];
 				button_id_for_ingredient[gradiant.names[1]] = button_id;
+				
+				if (gradiant.already_selected)
+					button_ids_to_preselect[button_ids_to_preselect.count()] = button_id;
 				core_out.append(" id=\"button_" + button_id + "\"");
 				core_out.append(" class=\"latte_button\" onclick=\"latteIngredientClicked(");
 				//Arguments:
@@ -777,9 +784,22 @@ void handleLatte(string page_text)
 	page_text_before_form = page_text_before_form.replace_string("You order a:", "");
 	page_text_before_form = page_text_before_form.replace_string("<b>Latte Shop</b>", "<b>Latte Shop v" + __latte_relay_version + "</b>");
 	
-	if (currently_available_ingredient_count == 3)
+	
+	if (currently_available_ingredient_count == 3 && button_ids_to_preselect.count() == 0)
 	{
-		page_text_before_form = page_text_before_form.replace_string("<body", "<body onload=\"latteIngredientClicked(0); latteIngredientClicked(1); latteIngredientClicked(2);\"");
+		for i from 0 to 2
+			button_ids_to_preselect[button_ids_to_preselect.count()] = i;
+	}
+	if (button_ids_to_preselect.count() > 0)
+	{
+		buffer onload_text;
+		foreach key, button_id in button_ids_to_preselect
+		{
+			onload_text.append("latteIngredientClicked(");
+			onload_text.append(button_id);
+			onload_text.append(");");
+		}
+		page_text_before_form = page_text_before_form.replace_string("<body", "<body onload=\"" + onload_text + "\"");
 	}
 	write(page_text_before_form);
 	write(core_out);

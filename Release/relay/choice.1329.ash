@@ -5,7 +5,7 @@ import "relay/choice.ash";
 //I thought about adding a button for it, but then I thought... does anyone need it?
 
 //Also, you can CLI "choice.1329.ash refill" to refill your latte with an algorithm that is terrible.
-string __latte_relay_version = "1.0.1";
+string __latte_relay_version = "1.0.2";
 
 boolean __setting_debug = false;
 
@@ -494,7 +494,7 @@ void handleLatte(string page_text)
 		{
 			Infographic info;
 			info.image_url = "images/itemimages/lattecup3.gif";
-			info.header = "Throw Latte on Opponenent";
+			info.header = "Throw Latte on Opponent";
 			if (!banish_used)
 			{
 				info.subtext = "Banish/free run available.";
@@ -708,7 +708,7 @@ void handleLatte(string page_text)
 	if (true)
 	{
 		string [int] active_ingredient_names;
-		float [string] ingredient_priority;
+		float [string] ingredient_priority; //+ is better, - is worse
 		int refills_used = get_property("_latteRefillsUsed").to_int(); //FIXME bother to parse from HTML?
 		
 		float [string] priority_preamble;
@@ -738,7 +738,7 @@ void handleLatte(string page_text)
 		}
 		priority_preamble["carrot"] += 200.0;
 		priority_preamble["cajun spice"] += 200.0;
-		priority_preamble["rawhide"] += 200.0;
+		priority_preamble["rawhide"] += 200.0; //familiar weight
 		if (!hippy_stone_broken())
 			priority_preamble["hellion"] -= 100000.0;
 		if (my_familiar() == $familiar[none])

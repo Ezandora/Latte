@@ -118,11 +118,14 @@ location [string] __locations_for_ingredients =
 	"cloves":$location[The Sleazy Back Alley],
 	"coal":$location[The Haunted Boiler Room],
 	"cocoa powder":$location[The Icy Peak],
+	"diet soda":$location[Battlefield (No Uniform)],
 	"dwarf cream":$location[Itznotyerzitz Mine],
+	"Dyspepsi":$location[Battlefield (Dyspepsi Uniform)],
 	"filth milk":$location[The Feeding Chamber],
 	"fresh grass":$location[The Hidden Park],
 	"fungus":$location[The Fungal Nethers],
 	"grave mold":$location[the unquiet garves],
+	"greek spice":$location[Wartime Frat House],
 	"grobold rum":$location[The Old Rubee Mine],
 	"guarna":$location[The Bat Hole Entrance],
 	"gunpowder":$location[1st Floor\, Shiawase-Mitsuhama Building],
@@ -132,6 +135,7 @@ location [string] __locations_for_ingredients =
 	"hot sausage":$location[Cobb's Knob Barracks], //'
 	"hot wing":$location[The Dark Heart of the Woods],
 	"ink":$location[The Haunted Library],
+	"kombucha":$location[Wartime Hippy Camp],
 	"lihc saliva":$location[The Defiled Niche],
 	"lizard milk":$location[The Arid\, Extra-Dry Desert],
 	"macaroni":$location[The Haunted Pantry],
@@ -148,18 +152,12 @@ location [string] __locations_for_ingredients =
 	"sandalwood splinter":$location[Noob Cave],
 	"sausage":$location[Cobb's Knob Kitchens], //'
 	"space pumpkin":$location[The Hole in the Sky],
+	"spaghetti squash spice":$location[The Copperhead Club],
 	"squamous":$location[The Caliginous Abyss],
 	"teeth":$location[The VERY Unquiet Garves],
 	"vanilla":$location[none],
 	"vitamin":$location[The Dark Elbow of the Woods],
 	"white flour":$location[The Road to the White Citadel],
-	"spaghetti squash spice":$location[The Copperhead Club],
-	"diet soda":$location[Battlefield (No Uniform)],
-	"greek spice":$location[Wartime Frat House],
-	"kombucha":$location[Wartime Hippy Camp],
-	
-	/*
-	"Dyspepsi":$location[REPLACEME],*/
 };
 
 int INGREDIENT_GROUPING_USEFUL = 1;

@@ -6,7 +6,7 @@ Installation
 ----------------
 Run this command in the graphical CLI:
 <pre>
-svn checkout https://github.com/Ezandora/Latte/trunk/Release/
+git checkout https://github.com/Ezandora/Latte.git
 </pre>
 And restart mafia.
 Will require [a recent build of KoLMafia](http://builds.kolmafia.us/job/Kolmafia/lastSuccessfulBuild/).
